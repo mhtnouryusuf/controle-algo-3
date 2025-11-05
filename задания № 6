@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+// Fonction pour échanger deux valeurs
+void echanger(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// Fonction de partition (place les éléments plus petits à gauche et les plus grands à droite)
+int partition(int tableau[], int debut, int fin) {
+    int pivot = tableau[fin]; // On choisit le dernier élément comme pivot
+    int i = debut - 1;
+
+    for (int j = debut; j < fin; j++) {
+        if (tableau[j] < pivot) {
+            i++;
+            echanger(tableau[i], tableau[j]);
+        }
+    }
+
+    echanger(tableau[i + 1], tableau[fin]);
+    return (i + 1);
+}
+
+// Fonction principale du tri rapide
+void triRapide(int tableau[], int debut, int fin) {
+    if (debut < fin) {
+        int indicePivot = partition(tableau, debut, fin);
+        triRapide(tableau, debut, indicePivot - 1);  // Tri à gauche du pivot
+        triRapide(tableau, indicePivot + 1, fin);    // Tri à droite du pivot
+    }
+}
+
+int main() {
+    // Déclaration et initialisation du tableau
+    int tableau[] = {35, 12, 43, 8, 51, 27, 64, 19};
+    int n = sizeof(tableau) / sizeof(tableau[0]);
+
+    cout << "Tableau avant le tri : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    // Appel du tri rapide
+    triRapide(tableau, 0, n - 1);
+
+    cout << "Tableau après le tri (ordre croissant) : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
