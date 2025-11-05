@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Nouveau tableau d'exemple
+    int tableau[] = {23, 5, 78, 15, 42, 9, 60, 31};
+    int n = sizeof(tableau) / sizeof(tableau[0]);
+
+    cout << "Tableau avant le tri : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    // Tri par insertion (ordre croissant)
+    for (int i = 1; i < n; i++) {
+        int cle = tableau[i];
+        int j = i - 1;
+
+        // Déplacer les éléments supérieurs à la clé
+        while (j >= 0 && tableau[j] > cle) {
+            tableau[j + 1] = tableau[j];
+            j = j - 1;
+        }
+        tableau[j + 1] = cle;
+    }
+
+    cout << "Tableau après le tri (ordre croissant) : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
