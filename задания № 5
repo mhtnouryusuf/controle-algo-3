@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Nouveau tableau de données
+    int tableau[] = {64, 34, 25, 12, 22, 11, 90, 50};
+    int n = sizeof(tableau) / sizeof(tableau[0]);
+
+    cout << "Tableau avant le tri : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    // Tri de Shell (ordre croissant)
+    for (int ecart = n / 2; ecart > 0; ecart /= 2) {
+        for (int i = ecart; i < n; i++) {
+            int temp = tableau[i];
+            int j;
+
+            // Déplacement des éléments plus grands que temp
+            for (j = i; j >= ecart && tableau[j - ecart] > temp; j -= ecart) {
+                tableau[j] = tableau[j - ecart];
+            }
+
+            tableau[j] = temp;
+        }
+    }
+
+    cout << "Tableau après le tri (ordre croissant) : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
