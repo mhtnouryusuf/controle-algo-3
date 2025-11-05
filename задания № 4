@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Déclaration et initialisation du tableau
+    int tableau[] = {25, 10, 45, 5, 30, 60, 15};
+    int n = sizeof(tableau) / sizeof(tableau[0]);
+
+    cout << "Tableau avant le tri : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    // Tri par sélection (ordre croissant)
+    for (int i = 0; i < n - 1; i++) {
+        int indice_min = i; // On suppose que le premier élément est le plus petit
+
+        // Recherche du plus petit élément dans le reste du tableau
+        for (int j = i + 1; j < n; j++) {
+            if (tableau[j] < tableau[indice_min]) {
+                indice_min = j;
+            }
+        }
+
+        // Échange si nécessaire
+        if (indice_min != i) {
+            int temp = tableau[i];
+            tableau[i] = tableau[indice_min];
+            tableau[indice_min] = temp;
+        }
+    }
+
+    cout << "Tableau après le tri (ordre croissant) : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
