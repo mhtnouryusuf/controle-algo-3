@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Déclaration et initialisation du tableau
+    int tableau[] = {45, 12, 89, 33, 10, 78, 56};
+    int n = sizeof(tableau) / sizeof(tableau[0]);
+    int temp;
+
+    cout << "Tableau avant le tri : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    // Tri à bulles (ordre croissant)
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (tableau[j] > tableau[j + 1]) {
+                // Échange des éléments
+                temp = tableau[j];
+                tableau[j] = tableau[j + 1];
+                tableau[j + 1] = temp;
+            }
+        }
+    }
+
+    cout << "Tableau après le tri (ordre croissant) : ";
+    for (int i = 0; i < n; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
